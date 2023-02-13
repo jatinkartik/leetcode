@@ -1,7 +1,3 @@
-import java.lang.reflect.Array;
-
-import javax.swing.AbstractAction;
-
 /*
  * @lc app=leetcode id=14 lang=java
  *
