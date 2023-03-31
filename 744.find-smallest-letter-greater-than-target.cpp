@@ -34,6 +34,11 @@ public:
         }
         // return letters[start];
         return letters[start%letters.size()];
+        // for future reference how above line work is so in this question we not included == condition
+        // by which if the target element is reach start will still incremented and it will go out of the index
+        // so if start in above line less than length of the vector then it will return start if it voilate rule
+        // then it must be equal to length of the vector which will return 0  --> that will help in loop around condition
+        // not  inculding the exceding length condition
     }
 };
 // @lc code=end
