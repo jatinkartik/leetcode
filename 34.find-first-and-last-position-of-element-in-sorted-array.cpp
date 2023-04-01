@@ -10,60 +10,57 @@ using namespace std;
 
 class Solution
 {
-public:
-    vector<int> searchRange(vector<int> &nums, int target)
+    int nameOcc(vector<int> &nums, int target, bool firstInd)
     {
+        int ans = -1;
         int start = 0;
         int end = nums.size() - 1;
-        bool con = false;
-        while (start < end)
-        {
-            int mid = start + (end - start) / 2;
-            if (target > nums[mid])
-            {
-                start = mid + 1;
-            }
-            else if (target <= nums[mid])
-            {
-                end = mid - 1;
-                if (target == nums[mid])
-                {
-                    con = true;
-                }
-            }
-        }
-        vector<int> num;
-        num.push_back(end);
-        start = 0;
-        end = nums.size() - 1;
+
         while (start <= end)
         {
             int mid = start + (end - start) / 2;
-            if (target >= nums[mid])
-            {
-                if (target == nums[mid])
-                {
-                    con = true;
-                }
-                start = mid + 1;
-            }
-            else if (target < nums[mid])
+            if (target < nums[mid])
             {
                 end = mid - 1;
             }
+            else if (target >    nums[mid])
+            {
+                start = mid + 1;
+            }
+            else
+            {
+                if (firstInd == true)
+                {
+                    end = mid-1;
+                    ans = mid;
+                }
+                else
+                {
+                    start = mid +1;
+                    ans = mid;
+                }
+            }
         }
-        num.push_back(start - 1);
-        if (con != true)
-        {
-            vector<int> numm;
-            numm.push_back(-1);
-            numm.push_back(-1);
-            return numm;
-        }
-        else
-        {
-            return num;
-        }
+        return ans;
+    }
+
+public:
+    vector<int> searchRange(vector<int> &nums, int target)
+    {
+        vector<int> numb;
+        int var1 = -1;
+        int var2 = -1;
+            
+        // if((nums.size()==1)&&(target==nums[0])){
+        //     numb.push_back(0);
+        //     numb.push_back(0);
+        //     return numb; 
+        // }
+        var1 = nameOcc(nums, target, true);
+        var2 = nameOcc(nums, target, false);
+        numb.push_back(var1);
+        numb.push_back(var2);
+        return numb;
     }
 };
 // @lc code=end
