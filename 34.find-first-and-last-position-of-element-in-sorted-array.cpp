@@ -10,7 +10,7 @@ using namespace std;
 
 class Solution
 {
-    int nameOcc(vector<int> &nums, int target, bool firstInd)
+    int nameOcc(vector<int> &nums, int target, bool cond)
     {
         int ans = -1;
         int start = 0;
@@ -19,24 +19,24 @@ class Solution
         while (start <= end)
         {
             int mid = start + (end - start) / 2;
-            if (target < nums[mid])
-            {
-                end = mid - 1;
-            }
-            else if (target >    nums[mid])
+            if (target > nums[mid])
             {
                 start = mid + 1;
             }
+            else if (target < nums[mid])
+            {
+                end = mid - 1;
+            }
             else
             {
-                if (firstInd == true)
+                if (cond == true)
                 {
                     end = mid-1;
                     ans = mid;
                 }
                 else
                 {
-                    start = mid +1;
+                    start = mid + 1;
                     ans = mid;
                 }
             }
@@ -56,8 +56,8 @@ public:
         //     numb.push_back(0);
         //     return numb; 
         // }
-        var1 = nameOcc(nums, target, true);
         var2 = nameOcc(nums, target, false);
+        var1 = nameOcc(nums, target, true);
         numb.push_back(var1);
         numb.push_back(var2);
         return numb;
