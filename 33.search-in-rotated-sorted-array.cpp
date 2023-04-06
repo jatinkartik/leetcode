@@ -15,7 +15,7 @@ public:
         int start = 0;
         int end = nums.size() - 1;
         int mid = start + (end - start) / 2;
-        while (start < end)
+        while (start <= end)
         {
             mid = start + (end - start) / 2;
             if (target == nums[mid])
@@ -30,7 +30,7 @@ public:
                 }
                 else
                 {
-                    end = mid;
+                    end = mid-1;
                 }
             }
             else
